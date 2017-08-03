@@ -35,6 +35,7 @@ function windingNumber = dynamicalSystemAnimate(n,k,t,r)
     % Plot the first point
     plot(P(1,:),P(2,:),'-k');
     hold on;
+    scatter(S(1,1),S(2,1),'g');
     scatter(S(1,1),S(2,1),'r');
     axis([-2 2 -2 2]);
     axis square;
@@ -49,6 +50,7 @@ function windingNumber = dynamicalSystemAnimate(n,k,t,r)
     plot(P(1,:),P(2,:),'-k');
     hold on;
     plot(S(1,1:2),S(2,1:2),'b');
+    scatter(S(1,1),S(2,1),'g');
     scatter(S(1,2),S(2,2),'r');
     axis([-2 2 -2 2]);
     axis square;
@@ -68,6 +70,7 @@ function windingNumber = dynamicalSystemAnimate(n,k,t,r)
         plot(P(1,:),P(2,:),'-k');
         hold on;
         plot(S(1,1:i),S(2,1:i),'b');
+        scatter(S(1,1),S(2,1),'g');
         scatter(S(1,i),S(2,i),'r');
         axis([-2 2 -2 2]);
         axis square;

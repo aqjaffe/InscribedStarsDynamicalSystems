@@ -1,0 +1,17 @@
+inscribeAllEquiStars():
+
+- res should be approximately between 50 and 100
+- Sometimes the warnings can be safely ignored (e.g. n=8,k=3 and n=10,k=5)
+- n=7,k=3 agrees with our triangle plot from the first week
+- n=11,k=5 gives a strange plot... there are local minima which are not
+  equal to the global minima, and the graph is not symmetric about its
+  center (although this may be a numerical phenomenon)
+- n=13,k=5 has a jumping error at approximately t=0.95
+- n=10,k=5 and n=15,k=5 agree with our hypotheses about the shape of
+  the side length function
+- n=17,k=7 gives a really strange plot... is this a numerical error?
+- n=21,k=9 the plot looks very simple again
+
+Other:
+
+-
