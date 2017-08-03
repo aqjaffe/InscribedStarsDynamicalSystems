@@ -46,6 +46,7 @@ function windingNumber = dynamicalSystemPlot(n,k,t,r)
     end
     
     clf;
+    figure;
     plot(P(1,:),P(2,:),'-k');
     hold on;
     plot(S(1,:),S(2,:),'b');
