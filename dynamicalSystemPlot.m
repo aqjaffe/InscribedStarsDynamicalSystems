@@ -16,7 +16,7 @@ function windingNumber = dynamicalSystemPlot(n,k,t,r)
     %     polygon with ball around each point is connected.
 
     % Some constants
-    ncirc = 100;                % number of sides used to approximate the circle
+    ncirc = 1000;                % number of sides used to approximate the circle
     epsilon = 0.0001;           % the tolerance of the stepping
     
     % Check connectivity
