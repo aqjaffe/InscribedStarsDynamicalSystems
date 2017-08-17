@@ -4,7 +4,7 @@ function minlen = inscribeAllEquiStars(n,k,res)
     ii = 1;
     for t = 0:1/res:1
         %disp(t);
-        lens(ii) = inscribeEquiStarPlot(n,k,t);
+        lens(ii) = inscribeEquiStar(n,k,t,"still");
         ii = ii + 1;
         pause(tdur);
     end

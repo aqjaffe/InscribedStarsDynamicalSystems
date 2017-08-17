@@ -1,4 +1,4 @@
-function windingNumber = dynamicalSystem(n,k,t,r)
+function windingNumber = dynamicalSystem(n,k,t,r,animation)
     % Computes k steps of the radius-r dynamical system on P_n,
     % starting at point (1-t)+tw.
 
@@ -7,6 +7,7 @@ function windingNumber = dynamicalSystem(n,k,t,r)
     %   k -- the number of steps
     %   t -- the barycentric coordinate for the initial point
     %   r -- the stepping radius
+    %   animation -- "none", "still", "full"
     
     % OUTPUT:
     %   windingNumber -- the winding number of the resulting path
@@ -18,6 +19,7 @@ function windingNumber = dynamicalSystem(n,k,t,r)
     % Some constants
     ncirc = 1000;                % number of sides used to approximate the circle
     epsilon = 0.0001;           % the tolerance of the stepping
+    tdur = 0.5; 
     
     % Check connectivity
     if (mod(n,2) == 0 && r >= 2*cos(2*pi/n)) || ...
@@ -31,17 +33,56 @@ function windingNumber = dynamicalSystem(n,k,t,r)
     S = zeros(2,k);
     S(:,1) = (1-t)*P(:,1)+t*P(:,2);
     
+    if(animation == "full") % Plot the first point
+        plot(P(1,:),P(2,:),'-k');
+        hold on;
+        scatter(S(1,1),S(2,1),'g');
+        scatter(S(1,1),S(2,1),'r');
+        axis([-2 2 -2 2]);
+        axis square;
+        xlabel('Inscribed Star');
+        pause(tdur);
+    end
+    
+    if(animation == "full") % Plot the second point
+        clf;
+        C_ = C + repmat(S(:,1),1,length(C(1,:)));
+        Y = poly2poly(C_,P);
+        S(:,2) = Y(:,1); % USE THIS TO CHANGE THE DIRECTION OF THE SYSTEM
+        plot(P(1,:),P(2,:),'-k');
+        hold on;
+        plot(S(1,1:2),S(2,1:2),'b');
+        scatter(S(1,1),S(2,1),'g');
+        scatter(S(1,2),S(2,2),'r');
+        axis([-2 2 -2 2]);
+        axis square;
+        xlabel('Inscribed Star');
+        pause(tdur);
+    end
+    
     % Run the dynamics
     C_ = C + repmat(S(:,1),1,length(C(1,:)));
     Y = poly2poly(C_,P);
     S(:,2) = Y(:,1); % USE THIS TO CHANGE THE DIRECTION OF THE SYSTEM
-    for i = 3:k+1
-        C_ = C + repmat(S(:,i-1),1,length(C(1,:)));
+    for ii = 3:k+1
+        C_ = C + repmat(S(:,ii-1),1,length(C(1,:)));
         Y = poly2poly(C_,P);
-        if norm(Y(:,1) - S(:,i-2)) < epsilon
-            S(:,i) = Y(:,2);
+        if norm(Y(:,1) - S(:,ii-2)) < epsilon
+            S(:,ii) = Y(:,2);
         else
-            S(:,i) = Y(:,1);
+            S(:,ii) = Y(:,1);
+        end
+        if(animation == "full" || (animation == "still" && ii == k + 1)) % Plot the next point
+            clf;
+            plot(P(1,:),P(2,:),'-k');
+            hold on;
+            plot(S(1,1:ii),S(2,1:ii),'b');
+            scatter(S(1,1),S(2,1),'g');
+            scatter(S(1,ii),S(2,ii),'r');
+            axis([-2 2 -2 2]);
+            axis square;
+            xlabel('Inscribed Star');
+            pause(tdur);
         end
     end
     
