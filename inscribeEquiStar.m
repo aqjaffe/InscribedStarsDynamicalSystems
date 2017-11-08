@@ -28,8 +28,8 @@ function [w,newrmin,newrmax] = inscribeEquiStarHelper(n,k,t,rmin,rmax,animation)
     if(animation == "none" || animation == "still")
         w = dynamicalSystem(n,k,t,r,"none");
     else
-        w = dynamicalSystem(n,k,t,r,"still");
         pause(tdur)
+        w = dynamicalSystem(n,k,t,r,"still");
     end
     if w < (k-1)/2  % the point was slow
         newrmin = r;

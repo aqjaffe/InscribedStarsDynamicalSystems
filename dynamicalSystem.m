@@ -19,10 +19,10 @@ function windingNumber = dynamicalSystem(n,k,t,r,animation)
     % Some constants
     ncirc = 1000;                % number of sides used to approximate the circle
     epsilon = 0.0001;           % the tolerance of the stepping
-    tdur = 0.5; 
+    tdur = 0.5;
     
     % Check connectivity
-    if (mod(n,2) == 0 && r >= 2*cos(2*pi/n)) || ...
+    if (mod(n,2) == 0 && r >= 2*cos(pi/n)) || ...
             (mod(n,2) == 1 && r >= 1+cos(2*pi/n)/(pi/n))
         warning('Input radius may lead to disconnected regions.')
     end
@@ -82,11 +82,25 @@ function windingNumber = dynamicalSystem(n,k,t,r,animation)
             axis([-2 2 -2 2]);
             axis square;
             xlabel('Inscribed Star');
-            pause(tdur);
+            if(ii ~= k + 1)
+                pause(tdur);
+            end
         end
     end
     
+    barys = zeros(1,k);
+    for ii = 1:k
+        barys(ii) = bary(S(:,ii),n);
+    end
+    barys
     thetas = unwrap(atan2(S(2,:),S(1,:)));
     windingNumber = (thetas(end) - thetas(1))/(2*pi);
 end
 
+function coord = bary(pt,n)
+    prop = atan2(pt(2),pt(1))/(2*pi);
+    k = floor(prop*n);
+    a = [cos(2*pi*k/n) sin(2*pi*k/n)];
+    b = [cos(2*pi*(k+1)/n) sin(2*pi*(k+1)/n)];
+    coord = norm(pt'-a)/norm(b-a);
+end

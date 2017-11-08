@@ -1,6 +1,6 @@
-function minlen = inscribeAllEquiStars(n,k,res)
+function lens = inscribeAllEquiStars(n,k,res)
     lens = zeros(1,res+1);
-    tdur = 0.01;
+    tdur = 0.00;
     ii = 1;
     for t = 0:1/res:1
         %disp(t);
@@ -9,7 +9,7 @@ function minlen = inscribeAllEquiStars(n,k,res)
         pause(tdur);
     end
     %minlen = min(lens(lens > 1));
-    minlen = min(lens);
+    %minlen = min(lens);
     %clf;
     figure;
     plot(0:1/res:1,lens);
