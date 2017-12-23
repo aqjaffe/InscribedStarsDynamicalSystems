@@ -1,11 +1,3 @@
 inscribeAllEquiStars():
 
 - res should be approximately 100
-- Sometimes the warnings can be safely ignored (e.g. n=8,k=3 and n=10,k=5)
-- n=7,k=3 agrees with our triangle plot from the first week
-- n=10,k=5 and n=15,k=5 agree with our hypotheses about the shape of
-  the side length function
-
-Other:
-
--
