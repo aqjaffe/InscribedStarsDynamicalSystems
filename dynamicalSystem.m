@@ -88,19 +88,6 @@ function windingNumber = dynamicalSystem(n,k,t,r,animation)
         end
     end
     
-    barys = zeros(1,k);
-    for ii = 1:k
-        barys(ii) = bary(S(:,ii),n);
-    end
-    barys
     thetas = unwrap(atan2(S(2,:),S(1,:)));
     windingNumber = (thetas(end) - thetas(1))/(2*pi);
-end
-
-function coord = bary(pt,n)
-    prop = atan2(pt(2),pt(1))/(2*pi);
-    k = floor(prop*n);
-    a = [cos(2*pi*k/n) sin(2*pi*k/n)];
-    b = [cos(2*pi*(k+1)/n) sin(2*pi*(k+1)/n)];
-    coord = norm(pt'-a)/norm(b-a);
 end
