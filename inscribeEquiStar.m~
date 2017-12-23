@@ -9,27 +9,23 @@ function r = inscribeEquiStar(n,k,t,animation)
     
     if mod(n,k) == 0
         P = vertcat(cos(0:(2*pi/n):2*pi),sin(0:(2*pi/n):2*pi));
-        S = zeros(2,k);
         S(:,1) = (1-t)*P(:,1)+t*P(:,2);
-        for ii = 2:k+1
-            j = n*(k-1)/(2*k);
-            S(1,ii) = S(1,ii-1)*P(1,j+1)-S(2,ii-1)*P(2,j+1);
-            S(2,ii) = S(1,ii-1)*P(2,j+1)+S(2,ii-1)*P(1,j+1);
+        for ii = 2:k
+            S(:,ii) = (S(1,ii-1)*P(1,2)-S(2,ii-1)*P(2,2))+
         end
         if animation == "full"
             warning('Cannot use full animation when 2*l+1 divides n.')
-        elseif animation == "still"
-            clf;
-            plot(P(1,:),P(2,:),'-k');
-            hold on;
-            plot(S(1,1:ii),S(2,1:ii),'b');
-            scatter(S(1,1),S(2,1),'g');
-            scatter(S(1,ii),S(2,ii),'r');
-            axis([-2 2 -2 2]);
-            axis square;
-            xlabel('Inscribed Star');
         end
-        r = 2*sin(pi*(k-1)/(2*k))*sqrt(2*t^2*(1-cos(2*pi/n))-2*t*(1-cos(2*pi/n))+1);
+        % TODO: need to finish this
+        clf;
+        plot(P(1,:),P(2,:),'-k');
+        hold on;
+        plot(S(1,1:ii),S(2,1:ii),'b');
+        scatter(S(1,1),S(2,1),'g');
+        scatter(S(1,ii),S(2,ii),'r');
+        axis([-2 2 -2 2]);
+        axis square;
+        xlabel('Inscribed Star');
     else
         if mod(n,2) == 0
             rn = 2*cos(pi/n);
